@@ -18,3 +18,16 @@ if comma is inside predicate, it becomes, intuitive [Example- "loves(x,Y):-fathe
 
 ishappy(bob):-sings(bob), OR IF GENERALISED head:-body - here ishappy() and sings() are both rules
 
+
+Recursion:-
+base case- is x in head?      
+induction case- is x in next part?
+
+member(X, []).      //base case- check if x in empty list
+
+member(X, [H|T]) :-      
+  (X = H ; member(X, T)).       //check if x in H, H being the head of the list, or if it is in T. Then it goes into recursion for each case
+
+       
+
+
