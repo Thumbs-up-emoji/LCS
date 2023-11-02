@@ -26,7 +26,7 @@ flatten([Head|Tail], FlattenedList) :-
     flatten(Tail, FlattenedTail).
 
 conc([],L,L).
-conc([x|L1],L2,[X,L3]):-
+conc([X|L1],L2,[X,L3]):-
     conc(L1,L2,L3).
 
 list_member(X,[X|_]).
