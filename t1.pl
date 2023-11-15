@@ -42,3 +42,40 @@ list_to_num([], Acc, Acc).
 
 % Recursive case: Multiply the accumulator by 10, add the current digit, and recurse on the tail of the list
 list_to_num([H|T], Acc, N) :- NewAcc is Acc * 10 + H, list_to_num(T, NewAcc, N).
+
+% Define the slice predicate
+slice(L, I, K, S) :- I1 is I - 1, length(Prefix, I1), append(Prefix, Rest, L), K1 is K - I1, length(S, K1), append(S, _, Rest).
+
+% Define the is_prime predicate
+is_prime(2).
+is_prime(N) :- N > 2, \+ has_factor(N, 2).
+
+% Define the has_factor predicate
+has_factor(N, F) :- N mod F =:= 0.
+has_factor(N, F) :- F * F < N, F2 is F + 1, has_factor(N, F2).
+
+% Use the is_prime predicate
+?- is_prime(7).
+
+% Define the combination predicate
+combination(0, _, []).
+combination(K, [X|Xs], [X|Ys]) :- K > 0, K1 is K - 1, combination(K1, Xs, Ys).
+combination(K, [_|Xs], Ys) :- K > 0, combination(K, Xs, Ys).
+
+% Use the combination predicate
+?- combination(3,[a,b,c,d,e,f],L).
+
+% Define the rotate predicate
+rotate(L, N, R) :- length(Prefix, N), append(Prefix, Suffix, L), append(Suffix, Prefix, R).
+
+% Use the rotate predicate
+?- rotate([a,b,c,d,e,f,g,h],3,X).
+?- rotate([a,b,c,d,e,f,g,h],-2,X).
+
+% Define the dupli predicate
+dupli([], _, []).
+dupli([X|Xs], N, Y) :- dupli(Xs, N, Ys), replicate(X, N, Z), append(Z, Ys, Y).
+
+% Define the replicate predicate
+replicate(_, 0, []).
+replicate(X, N, [X|Xs]) :- N > 0, N1 is N - 1, replicate(X, N1, Xs).
