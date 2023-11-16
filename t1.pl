@@ -62,15 +62,8 @@ combination(0, _, []).
 combination(K, [X|Xs], [X|Ys]) :- K > 0, K1 is K - 1, combination(K1, Xs, Ys).
 combination(K, [_|Xs], Ys) :- K > 0, combination(K, Xs, Ys).
 
-% Use the combination predicate
-?- combination(3,[a,b,c,d,e,f],L).
-
 % Define the rotate predicate
 rotate(L, N, R) :- length(Prefix, N), append(Prefix, Suffix, L), append(Suffix, Prefix, R).
-
-% Use the rotate predicate
-?- rotate([a,b,c,d,e,f,g,h],3,X).
-?- rotate([a,b,c,d,e,f,g,h],-2,X).
 
 % Define the dupli predicate
 dupli([], _, []).
